@@ -2,7 +2,7 @@ package com.nike.chat02.dead;
 
 public class PrintString implements Runnable{
 
-    private  boolean isContinuePrint =true;
+    private volatile   boolean isContinuePrint =true;
 
     public boolean isContinuePrint() {
         return isContinuePrint;
