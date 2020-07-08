@@ -8,6 +8,7 @@ import com.nike.chat02.syncstatic.ThreadC;
 import com.nike.chat02.syncstatic.ThreadD;
 import com.nike.chat02.volati.AddCountThread;
 import com.nike.chat02.volati.MyThread;
+import com.nike.chat04.ConditionTest;
 
 public class Run {
     public static void main(String[] args) throws InterruptedException {
@@ -17,7 +18,7 @@ public class Run {
 //            method();
 //        method1();
 //          deadMethod();
-        method4();
+        method5();
     }
 
     private static void NoSelfThread(){
@@ -183,5 +184,13 @@ public class Run {
 
         Thread t5 = new Thread(addCountThread);
         t5.start();
+    }
+
+    //进入waiting状态
+    private static void method5(){
+        ConditionTest test = new ConditionTest();
+        new Thread(test::tryawit).start();
+        new Thread(test:: tryawit).start();
+        new Thread(test:: tryawit).start();
     }
 }

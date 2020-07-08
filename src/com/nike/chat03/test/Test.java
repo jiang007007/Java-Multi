@@ -3,17 +3,17 @@ package com.nike.chat03.test;
 import com.nike.chat03.mylist.MyList;
 import com.nike.chat03.mylist.ThreadA;
 import com.nike.chat03.mylist.ThreadB;
+import com.nike.chat03.pip.DBTools;
 import com.nike.chat03.pip.ReadDate;
 import com.nike.chat03.pip.WriteDate;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import java.io.IOException;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 
 public class Test {
-    public static void main(String[] args) throws IOException, InterruptedException {
-            method2();
+    public static void main(String[] args) throws InterruptedException {
+            method3();
     }
 
     private static void method(){
@@ -43,5 +43,13 @@ public class Test {
         Thread.sleep(2000);
 
         new Thread(()-> writeDate.writeDate(pipedOutputStream)).start();
+    }
+
+    public static void method3(){
+        DBTools tools = new DBTools();
+        for (int i = 0; i < 20; i++) {
+            new Thread(tools::backupA).start();
+            new Thread(tools::backupB).start();
+        }
     }
 }
